@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         VTC_MyPortal_Attendance_Calculator
 // @namespace    http://tampermonkey.net/
-// @version      2023-12-18
+// @version      2025-5-14
 // @description  計算出席率
 // @author       GG
-// @match        https://myportal.vtc.edu.hk/wps/myportal/!ut/p/z1/*
+// @match        https://myportal.vtc.edu.hk/wps/myportal/sp/spostud/!ut/p/z1/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=edu.hk
 // @grant        none
 // @license      MIT
@@ -15,6 +15,8 @@
 (function () {
     'use strict';
 
+    const array = {};
+
     // console.log("Hello world");
     var original = document.querySelector("#viewns_Z7_60MAHK02O09VD0QM6ROE6S0000_\\:j_id_1t\\:j_id_2b\\:tbody_element").innerText;
     original = original.replace(/\s+/ig, " ")
@@ -24,7 +26,7 @@
     var attend_time = 0
     var real_hour_time = 0
     var sum_hour_time = 0
-    // 傳入 HH:MM 返回 second
+    // 傳入 HH:MM 返回 Second
     function format2sec(format_time) {
         // 小時
         let hours = parseInt(format_time.slice(0, 2)) * 3600;
@@ -66,9 +68,7 @@
     var Abs = Math.ceil(100 - ((real_hour_time / 3600).toFixed(2) / (sum_hour_time / 3600).toFixed(2)).toFixed(3) * 100)
     // "<h3 style='color: red'>reference only</h3>"
     document.querySelector("#viewns_Z7_60MAHK02O09VD0QM6ROE6S0000_\\:j_id_1t > div:nth-child(7) > span").innerHTML +=
-    "<span>"+"Abs:"+ Abs.toString() + "%" + "Hours(this course):"+ (sum_hour_time / 3600).toFixed(1).toString()+ "Hours"+"--</span>" +
-    "<labal>Total Hours(Course)</labal><input type='number' id='total_hours' min='5' max='120'><button type='button' id='test_calc'>Calculate</button>"
+    "<span><mark>數據僅供參考！/For reference only! ---> "+"Abs:"+ Abs.toString() + "%</mark></span>"
     document.querySelector("#viewns_Z7_60MAHK02O09VD0QM6ROE6S0000_\\:j_id_1t\\:j_id_2b\\:tbody_element").innerHTML += '<tr class="hkvtcsp_trow_color"><td style="text-align:center">>>>></td><td style="text-align:center">'+status_present_times.toString()+'</td><td style="text-align:center">'+(real_hour_time / 3600).toFixed(2).toString()+'Hours</td><td style="text-align:center">'+(sum_hour_time / 3600).toFixed(2).toString()+'Hours</td><td style="text-align:center"><<<<</td></tr>';
 })();
-
 
