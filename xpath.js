@@ -68,7 +68,8 @@
     var Abs = Math.ceil(100 - ((real_hour_time / 3600).toFixed(2) / (sum_hour_time / 3600).toFixed(2)).toFixed(3) * 100)
     // "<h3 style='color: red'>reference only</h3>"
     document.querySelector("#viewns_Z7_60MAHK02O09VD0QM6ROE6S0000_\\:j_id_1t > div:nth-child(7) > span").innerHTML +=
-    "<span><mark>數據僅供參考！/For reference only! ---> "+"Abs:"+ Abs.toString() + "%</mark></span>"
+    "<span><mark>數據僅供參考！/For reference only! ---> "+"Abs(recent):"+ Abs.toString() + "%</mark></span>"
     document.querySelector("#viewns_Z7_60MAHK02O09VD0QM6ROE6S0000_\\:j_id_1t\\:j_id_2b\\:tbody_element").innerHTML += '<tr class="hkvtcsp_trow_color"><td style="text-align:center">>>>></td><td style="text-align:center">'+status_present_times.toString()+'</td><td style="text-align:center">'+(real_hour_time / 3600).toFixed(2).toString()+'Hours</td><td style="text-align:center">'+(sum_hour_time / 3600).toFixed(2).toString()+'Hours</td><td style="text-align:center"><<<<</td></tr>';
 })();
+
 
